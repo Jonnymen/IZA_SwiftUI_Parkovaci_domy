@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB12B4A9245C6A3E00B45ABF /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FB12B4A8245C6A3E00B45ABF /* SwiftSoup */; };
+		FB12B4AB245C6B5800B45ABF /* ParkHouseFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12B4AA245C6B5800B45ABF /* ParkHouseFrameView.swift */; };
+		FB12B4AE245C6BDC00B45ABF /* WebScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12B4AD245C6BDC00B45ABF /* WebScraper.swift */; };
+		FB12B4B1245C6C5200B45ABF /* ParkHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12B4B0245C6C5200B45ABF /* ParkHouse.swift */; };
+		FB19DB6A245ED593009EE875 /* ParkHouseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB19DB69245ED593009EE875 /* ParkHouseDetailView.swift */; };
+		FB19DB6C245EDAAF009EE875 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB19DB6B245EDAAF009EE875 /* ImageDownloader.swift */; };
 		FBB58174245C679900696A5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB58173245C679900696A5F /* AppDelegate.swift */; };
 		FBB58176245C679900696A5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB58175245C679900696A5F /* SceneDelegate.swift */; };
 		FBB58179245C679900696A5F /* Parkovaci_domy_SwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBB58177245C679900696A5F /* Parkovaci_domy_SwiftUI.xcdatamodeld */; };
@@ -17,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB12B4AA245C6B5800B45ABF /* ParkHouseFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkHouseFrameView.swift; sourceTree = "<group>"; };
+		FB12B4AD245C6BDC00B45ABF /* WebScraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScraper.swift; sourceTree = "<group>"; };
+		FB12B4B0245C6C5200B45ABF /* ParkHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkHouse.swift; sourceTree = "<group>"; };
+		FB19DB69245ED593009EE875 /* ParkHouseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkHouseDetailView.swift; sourceTree = "<group>"; };
+		FB19DB6B245EDAAF009EE875 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		FBB58170245C679900696A5F /* Parkovaci_domy_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parkovaci_domy_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB58173245C679900696A5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB58175245C679900696A5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,12 +44,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB12B4A9245C6A3E00B45ABF /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB12B4AC245C6BC900B45ABF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FB12B4AD245C6BDC00B45ABF /* WebScraper.swift */,
+				FB19DB6B245EDAAF009EE875 /* ImageDownloader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FB12B4AF245C6C3D00B45ABF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB12B4B0245C6C5200B45ABF /* ParkHouse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FB19DB6F245F0711009EE875 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5817A245C679900696A5F /* ContentView.swift */,
+				FB12B4AA245C6B5800B45ABF /* ParkHouseFrameView.swift */,
+				FB19DB69245ED593009EE875 /* ParkHouseDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FBB58167245C679900696A5F = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +97,11 @@
 		FBB58172245C679900696A5F /* Parkovaci_domy_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				FB12B4AF245C6C3D00B45ABF /* Model */,
+				FB19DB6F245F0711009EE875 /* Views */,
+				FB12B4AC245C6BC900B45ABF /* Services */,
 				FBB58173245C679900696A5F /* AppDelegate.swift */,
 				FBB58175245C679900696A5F /* SceneDelegate.swift */,
-				FBB5817A245C679900696A5F /* ContentView.swift */,
 				FBB5817C245C679B00696A5F /* Assets.xcassets */,
 				FBB58181245C679B00696A5F /* LaunchScreen.storyboard */,
 				FBB58184245C679B00696A5F /* Info.plist */,
@@ -94,6 +135,9 @@
 			dependencies = (
 			);
 			name = Parkovaci_domy_SwiftUI;
+			packageProductDependencies = (
+				FB12B4A8245C6A3E00B45ABF /* SwiftSoup */,
+			);
 			productName = Parkovaci_domy_SwiftUI;
 			productReference = FBB58170245C679900696A5F /* Parkovaci_domy_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +166,9 @@
 				Base,
 			);
 			mainGroup = FBB58167245C679900696A5F;
+			packageReferences = (
+				FB12B4A7245C6A3E00B45ABF /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = FBB58171245C679900696A5F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -150,9 +197,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB58174245C679900696A5F /* AppDelegate.swift in Sources */,
+				FB12B4B1245C6C5200B45ABF /* ParkHouse.swift in Sources */,
 				FBB58179245C679900696A5F /* Parkovaci_domy_SwiftUI.xcdatamodeld in Sources */,
 				FBB5817B245C679900696A5F /* ContentView.swift in Sources */,
+				FB19DB6A245ED593009EE875 /* ParkHouseDetailView.swift in Sources */,
+				FB12B4AB245C6B5800B45ABF /* ParkHouseFrameView.swift in Sources */,
 				FBB58176245C679900696A5F /* SceneDelegate.swift in Sources */,
+				FB19DB6C245EDAAF009EE875 /* ImageDownloader.swift in Sources */,
+				FB12B4AE245C6BDC00B45ABF /* WebScraper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB12B4A7245C6A3E00B45ABF /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB12B4A8245C6A3E00B45ABF /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB12B4A7245C6A3E00B45ABF /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FBB58177245C679900696A5F /* Parkovaci_domy_SwiftUI.xcdatamodeld */ = {

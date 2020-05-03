@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Parkovaci_domy_SwiftUI
 //
-//  Created by Jan Menšík on 01/05/2020.
+//  Created by Jan Menšík on 01/04/2020.
 //  Copyright © 2020 Jan Menšík. All rights reserved.
 //
 
