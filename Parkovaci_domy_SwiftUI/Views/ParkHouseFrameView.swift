@@ -6,18 +6,24 @@
 //  Copyright © 2020 Jan Menšík. All rights reserved.
 //
 
+// This file represents small parking house view displayed on main screen of the application
+
 import SwiftUI
 
 struct ParkHouseFrameView: View {
     
+    // Model for view
     var parkHouse : ParkHouse
     
+    // ParkHouseFrameView
     var body: some View {
         ZStack {
             Rectangle()
                 .colorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
                 .cornerRadius(20)
             VStack {
+                
+                // Parking house name
                 Text(parkHouse.name)
                     .font(.title)
                     .foregroundColor(Color.blue)
@@ -26,6 +32,8 @@ struct ParkHouseFrameView: View {
                     .padding([.top, .leading, .trailing])
                 Spacer()
                 HStack {
+                    
+                    // Occupacy info
                     HStack (spacing: 0) {
                         Text("Obsazenost: ")
                         Text("\(self.parkHouse.occupied)")
@@ -36,6 +44,8 @@ struct ParkHouseFrameView: View {
                     }.foregroundColor(.black)
                     Spacer()
                     HStack{
+                        
+                        // ETA info (not done yet)
                         Image(systemName: "car")
                         Text("x min")
                     }.foregroundColor(.black)

@@ -6,23 +6,29 @@
 //  Copyright © 2020 Jan Menšík. All rights reserved.
 //
 
-
+// This file contains web-scraping service used to download data from internet and transform them to model using SwiftSoup package via Swift Package Dependencies
 
 import Foundation
-import SwiftSoup
+import SwiftSoup    // External package
 
 class WebScraper {
     
     public init() {}
     
+    // URL for scraping
     private static let parkHouseUrl : String = "https://www.parkovanivbrne.cz/parkovani-dalsi"
     
+    // Static function for data dowloading
     public static func getParkHouses() -> [ParkHouse] {
         
+        // Final house array
         var houseArray : [ParkHouse] = []
+        // HTML downloaded string
         var htmlData : String
+        // Document for working with SwiftSoup package
         var htmlDoc : Document
         
+        // Get data from URL
         if let url = URL(string: parkHouseUrl) {
             do {
                 htmlData = try String(contentsOf: url)
@@ -38,33 +44,39 @@ class WebScraper {
         
         
         do {
+            // Transform data to document
             htmlDoc = try SwiftSoup.parse(htmlData)
+            // Selecting houses from document
             let houses : Elements = try htmlDoc.select(".accordion__block")
             for house in houses {
                 
+                // Get house model
                 let HouseStruct : ParkHouse? = convertToStruct(from: house)
                 if let _house = HouseStruct {
+                    // Append house to final array
                     houseArray.append(_house)
                 }
             }
-            print(houseArray)
+            
+            // Return final array of houses
             return houseArray
             
-            
+        // Error in parsing the document
         } catch Exception.Error( _, let msg) {
             print(msg)
+        // Other fatal error
         } catch {
             print("Other fatal error!")
         }
         
-        
+        // Return empty array if error occured anywhere
         return []
     }
     
+    // MARK: - Scraping of houses
     private static func convertToStruct(from house : Element) -> ParkHouse? {
         
         do {
-            //MARK: - Header part
             let header = try house.select(".accordion__header")
             var name = try header.text()
             
@@ -129,17 +141,17 @@ class WebScraper {
                 }
             }
             
-            /// Model creation
+            // MARK: Model creation
             
             let model = ParkHouse(name: name, occupied: Int(occupied)!, maxOccupation: Int(occupationMax)!, imageUrl: imageUrl, paidParkingScheduleDays: paidParkingScheduleDays, paidParkingScheduleTimes: paidParkingScheduleTimes, parkingPricingInfo: parkingPricingInfo, parkingPricingRates: parkingPricingRates, latitude: Float(latitude)!, longitude: Float(longitude)!)
             
             return model
-            
+        // parsing error occured
         } catch Exception.Error( _, let msg) {
             
             print(msg)
             return nil
-            
+        // Other fatal error
         } catch {
             
             print("Error in decoding house")

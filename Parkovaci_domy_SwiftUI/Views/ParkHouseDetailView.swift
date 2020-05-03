@@ -6,20 +6,30 @@
 //  Copyright © 2020 Jan Menšík. All rights reserved.
 //
 
+
+
+// This file represents the detailed view of one parking house.
+
 import SwiftUI
 
 struct ParkHouseDetailView: View {
-    
+    // Model for rendering the view
     var parkHouse : ParkHouse
+    // Observing variable for downloading image from URL
     @ObservedObject var imageDownloader: ImageDownloader
+    
     
     init(parkHouse: ParkHouse) {
         self.parkHouse = parkHouse
+        // Initialize with proper image url
         imageDownloader = ImageDownloader(urlString: self.parkHouse.imageUrl)
     }
     
+    // Download the image, or display error on screen
     var imageContent: AnyView {
+        // Get the data computed property from imageDownloader
         if let image = UIImage(data: imageDownloader.data) {
+            // SUCCESS
             return AnyView(
                 Image(uiImage: image)
                     .resizable()
@@ -28,17 +38,20 @@ struct ParkHouseDetailView: View {
             )
         }
         else {
+            // FAILURE
             return AnyView(
                 Text("Image was not loaded")
             )
         }
     }
     
+    // ParkHouseDetailView
     var body: some View {
         ZStack {
             ScrollView {
                 VStack {
-                   Text(self.parkHouse.name)
+                    // Heading (name of parking house)
+                    Text(self.parkHouse.name)
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color.blue)
@@ -46,9 +59,11 @@ struct ParkHouseDetailView: View {
                         .lineLimit(3)
         //                .padding(.horizontal)
                         .padding(EdgeInsets(top: -50, leading: 15, bottom: 0, trailing: 15))
+                    // Downloaded image
                     
                     self.imageContent
                     
+                    // Information telling when is the parking paid
                     Text("Zpoplatněno v:")
                         .underline()
                         .fontWeight(.bold)
@@ -66,6 +81,8 @@ struct ParkHouseDetailView: View {
                             }
                         }
                     }.padding(.top)
+                    
+                    // Information about parking fees
                     Text("Ceny za parkování:")
                         .underline()
                         .fontWeight(.bold)
@@ -79,19 +96,25 @@ struct ParkHouseDetailView: View {
                         }.padding(.top)
                     }
                     
-                    
+                    // Filling rectangle due to fixed footer
                     Rectangle()
                         .frame(height: 100)
                         .foregroundColor(.white)
                         
                 }.frame(width: UIScreen.main.bounds.width)
             }
+            
+            // Fixed footer with directions reference and occupacy information
             GeometryReader { geometry in
                 ZStack {
+                    
+                    // Background of footer
                     Rectangle()
                         .foregroundColor(.white)
                         .border(Color.black, width: 0.5)
                     HStack {
+                        
+                        // Occupacy information
                         HStack(spacing: 0) {
                             Text("Obsazenost: ")
                             Text(String(self.parkHouse.occupied))
@@ -100,12 +123,19 @@ struct ParkHouseDetailView: View {
                             )
                             Text(" / \(self.parkHouse.maxOccupation)")
                         }.padding(.leading)
+                        
                         Spacer()
+                        
+                        // Button referencing the directions to parking house
                         Button(action: self.openMap) {
                             ZStack {
+                                
+                                // Button background
                                 Rectangle()
                                     .background(Color.blue)
                                     .cornerRadius(10)
+                                
+                                // Button text
                                 Text("Navigovat")
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
@@ -114,11 +144,14 @@ struct ParkHouseDetailView: View {
                         }
                     }
                 }.frame(width: geometry.size.width, height: 100)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
+                .position(x: geometry.size.width / 2, y: geometry.size.height - 50)
+                // Fixed position bottom
+                
             }
         }
     }
     
+    // Function for creating proper Apple Map request for getting the directions from coordinates
     func openMap() {
         let mapUrlString = "http://maps.apple.com/?daddr=" + String(self.parkHouse.latitude) + "," + String(self.parkHouse.longitude) + "&dirflg=d&t=m"
         if let url = URL(string: mapUrlString) {
